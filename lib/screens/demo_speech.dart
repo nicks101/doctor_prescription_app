@@ -13,8 +13,9 @@ class DemoSpeech extends StatefulWidget {
 }
 
 class _DemoSpeechState extends State<DemoSpeech> {
+  String name = 'name';
   bool _expanded = false;
-  String dummy = "";
+  List<String> dummy = [];
   bool _hasSpeech = false;
   String titleWords = "";
   String lastWords = "";
@@ -40,11 +41,33 @@ class _DemoSpeechState extends State<DemoSpeech> {
     });
   }
 
+  void checkKeyword() {
+    if (dummy.isNotEmpty) {
+      dummy.forEach((value) => print(value));
+    }
+    if (dummy.contains('name')) {
+      print('found!!');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Speech to Text Example'),
+        title: const Text('Speech to Text'),
+        actions: <Widget>[
+          Container(
+            child: FlatButton(
+              child: Text(
+                'DONE',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {},
+            ),
+          )
+        ],
       ),
       body: _hasSpeech
           ? Column(
@@ -118,11 +141,6 @@ class _DemoSpeechState extends State<DemoSpeech> {
                 //   ),
                 // ),
                 Expanded(
-                  child: Center(
-                    child: Text(lastWords.length.toString()),
-                  ),
-                ),
-                Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -161,6 +179,13 @@ class _DemoSpeechState extends State<DemoSpeech> {
                         : Text('Not listening'),
                   ),
                 ),
+                Expanded(
+                  child: Center(
+                    child: dummy.length >= 2
+                        ? Text(dummy[dummy.length - 2])
+                        : Text("nothing"),
+                  ),
+                ),
               ],
             )
           : Center(
@@ -173,7 +198,7 @@ class _DemoSpeechState extends State<DemoSpeech> {
   void startListening() {
     lastWords = "";
     // lastError = "";
-    speech.listen(onResult: resultListener);
+    speech.listen(onResult: resultListener, localeId: "en_in");
     setState(() {});
   }
 
@@ -191,8 +216,10 @@ class _DemoSpeechState extends State<DemoSpeech> {
     setState(() {
       lastWords = "${result.recognizedWords} "; // - ${result.finalResult}";
       // print('found words:  $lastWords');
-      if (lastWords.isNotEmpty) {
+      if (result.finalResult) {
         _expanded = true;
+        dummy.add(lastWords);
+        checkKeyword();
       }
     });
   }
