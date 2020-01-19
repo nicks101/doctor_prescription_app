@@ -5,17 +5,33 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 
 import '../widgets/prescription_items.dart';
+import './edit_prescription_screen.dart';
 // import 'package:speech_to_text/speech_recognition_error.dart';
 
 class DemoSpeech extends StatefulWidget {
+  static const routeName = '/demo-speech';
   @override
   _DemoSpeechState createState() => _DemoSpeechState();
 }
 
 class _DemoSpeechState extends State<DemoSpeech> {
-  String name = 'name';
+  int counter = 1;
+
+  bool _nameExpanded = false;
+  bool _symptomsExpanded = false;
+  bool _diagnosisExpanded = false;
+  bool _prescriptionExpanded = false;
+  bool _adviceExpanded = false;
   bool _expanded = false;
+
+  String _nameWords = '';
+  String _symptomsWords = '';
+  String _diagnosisWords = '';
+  String _prescriptionWords = '';
+  String _adviceWords = '';
+
   List<String> dummy = [];
+  List<String> _content = [];
   bool _hasSpeech = false;
   String titleWords = "";
   String lastWords = "";
@@ -43,10 +59,42 @@ class _DemoSpeechState extends State<DemoSpeech> {
 
   void checkKeyword() {
     if (dummy.isNotEmpty) {
-      dummy.forEach((value) => print(value));
-    }
-    if (dummy.contains('name')) {
-      print('found!!');
+      // for( String item in dummy)
+      // {
+      // item = item.trim();
+      // print(item);
+      // print(item.length);
+      //   if(item == 'name')
+      //   {
+      //     print('found');
+      //   }
+      // }
+      if (dummy.last.trim() == 'name') {
+        _nameExpanded = _expanded;
+        if (counter % 2 == 0) {
+          _nameWords = _content.last;
+        }
+      } else if (dummy.last.trim() == 'symptoms') {
+        _symptomsExpanded = _expanded;
+        if (counter % 2 == 0) {
+          _symptomsWords = _content.last;
+        }
+      } else if (dummy.last.trim() == 'prescription') {
+        _prescriptionExpanded = _expanded;
+        if (counter % 2 == 0) {
+          _prescriptionWords = _content.last;
+        }
+      } else if (dummy.last.trim() == 'diagnosis') {
+        _diagnosisExpanded = _expanded;
+        if (counter % 2 == 0) {
+          _diagnosisWords = _content.last;
+        }
+      } else if (dummy.last.trim() == 'advice') {
+        _adviceExpanded = _expanded;
+        if (counter % 2 == 0) {
+          _adviceWords = _content.last;
+        }
+      }
     }
   }
 
@@ -56,17 +104,35 @@ class _DemoSpeechState extends State<DemoSpeech> {
       appBar: AppBar(
         title: const Text('Speech to Text'),
         actions: <Widget>[
-          Container(
-            child: FlatButton(
-              child: Text(
-                'DONE',
-                style: TextStyle(
-                  color: Colors.white,
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              // Navigator.of(context).pushNamed(EditPrescriptionScreen.routeName);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditPrescriptionScreen(
+                    name: _nameWords,
+                    symptoms: _symptomsWords,
+                    diagnosis: _diagnosisWords,
+                    advice: _adviceWords,
+                    prescription: _prescriptionWords,
+                  ),
                 ),
-              ),
-              onPressed: () {},
-            ),
-          )
+              );
+            },
+          ),
+          // Container(
+          //   child: FlatButton(
+          //     child: Text(
+          //       'DONE',
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //     onPressed: () {},
+          //   ),
+          // )
         ],
       ),
       body: _hasSpeech
@@ -111,28 +177,28 @@ class _DemoSpeechState extends State<DemoSpeech> {
                 //   ),
                 // ),
                 PrescriptionItem(
-                  lastWords: lastWords,
-                  expanded: _expanded,
+                  lastWords: _nameWords,
+                  expanded: _nameExpanded,
                   title: "Name",
                 ),
                 PrescriptionItem(
-                  lastWords: lastWords,
-                  expanded: _expanded,
+                  lastWords: _symptomsWords,
+                  expanded: _symptomsExpanded,
                   title: "Symptoms",
                 ),
                 PrescriptionItem(
-                  lastWords: lastWords,
-                  expanded: _expanded,
+                  lastWords: _diagnosisWords,
+                  expanded: _diagnosisExpanded,
                   title: "Diagnosis",
                 ),
                 PrescriptionItem(
-                  lastWords: lastWords,
-                  expanded: _expanded,
+                  lastWords: _prescriptionWords,
+                  expanded: _prescriptionExpanded,
                   title: "Prescription",
                 ),
                 PrescriptionItem(
-                  lastWords: lastWords,
-                  expanded: _expanded,
+                  lastWords: _adviceWords,
+                  expanded: _adviceExpanded,
                   title: "Advice",
                 ),
                 // Expanded(
@@ -181,8 +247,8 @@ class _DemoSpeechState extends State<DemoSpeech> {
                 ),
                 Expanded(
                   child: Center(
-                    child: dummy.length >= 2
-                        ? Text(dummy[dummy.length - 2])
+                    child: dummy.length >= 1
+                        ? Text(dummy[dummy.length - 1])
                         : Text("nothing"),
                   ),
                 ),
@@ -198,7 +264,13 @@ class _DemoSpeechState extends State<DemoSpeech> {
   void startListening() {
     lastWords = "";
     // lastError = "";
-    speech.listen(onResult: resultListener, localeId: "en_in");
+    speech
+        .listen(
+          onResult: resultListener,
+          localeId: "en_in",
+        )
+        .then((_) {});
+
     setState(() {});
   }
 
@@ -218,8 +290,14 @@ class _DemoSpeechState extends State<DemoSpeech> {
       // print('found words:  $lastWords');
       if (result.finalResult) {
         _expanded = true;
-        dummy.add(lastWords);
+
+        if (counter % 2 == 1) {
+          dummy.add(lastWords);
+        } else {
+          _content.add(lastWords);
+        }
         checkKeyword();
+        counter++;
       }
     });
   }

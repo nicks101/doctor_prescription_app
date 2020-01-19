@@ -1,10 +1,10 @@
 class Prescription {
   final String id;
-  final Map<String, String> name;
-  final List<String> symptoms;
-  final List<String> diagnosis;
-  final List<String> prescriptions;
-  final List<String> advice;
+  final String name;
+  final String symptoms;
+  final String diagnosis;
+  final String prescriptions;
+  final String advice;
 
   Prescription({
     this.id,
