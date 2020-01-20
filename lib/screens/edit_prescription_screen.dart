@@ -63,7 +63,8 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
           ),
         ],
       ),
-      body: Padding(
+      body: Container(
+        color: Colors.red[50],
           padding: const EdgeInsets.all(16),
           child: Form(
             key: _form,
@@ -211,7 +212,6 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
                     ),
                     padding: const EdgeInsets.only(top: 15, bottom: 15),
                     color: Theme.of(context).primaryColor,
-                    splashColor: Theme.of(context).accentColor,
                     elevation: 5,
                     child: Text(
                       'Submit',

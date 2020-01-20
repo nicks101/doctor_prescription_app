@@ -8,7 +8,6 @@ class PatientReportScreen extends StatefulWidget {
 }
 
 class _PatientReportScreenState extends State<PatientReportScreen> {
-
   double padding = 10.0;
 
   Widget _buildCard(String firstName, String lastName) {
@@ -19,11 +18,23 @@ class _PatientReportScreenState extends State<PatientReportScreen> {
         child: ListTile(
           title: Container(
             padding: EdgeInsets.all(padding),
-            child: Text(firstName),
+            child: Text(
+              firstName,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.title.color,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           subtitle: Container(
-            padding: EdgeInsets.only(bottom: padding, left: padding, right: padding),
-            child: Text(lastName),
+            padding:
+                EdgeInsets.only(bottom: padding, left: padding, right: padding),
+            child: Text(
+              lastName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ),
@@ -84,7 +95,12 @@ class _PatientReportScreenState extends State<PatientReportScreen> {
         title: Text("patient - prescription"),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [Colors.red[900], Colors.red[300], Colors.red[100]],
+          ),
+        ),
         padding: const EdgeInsets.all(10),
         child: ListView.builder(
           itemCount: names.length,

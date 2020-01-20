@@ -101,7 +101,6 @@ class _DemoSpeechState extends State<DemoSpeech> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('Speech to Text'),
         actions: <Widget>[
@@ -136,136 +135,153 @@ class _DemoSpeechState extends State<DemoSpeech> {
           // )
         ],
       ),
-      body:
-          //  _hasSpeech ?
-          Column(
-        children: [
-          // Expanded(
-          //   child: Column(
-          //     children: <Widget>[
-          //       Center(
-          //         child: Text('Recognized Words'),
-          //       ),
-          //       Center(
-          //         child: Text(lastWords),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [Colors.red[900], Colors.red[300], Colors.red[100]],
+          ),
+        ),
+        child: Column(
+          children: [
+            // Expanded(
+            //   child: Column(
+            //     children: <Widget>[
+            //       Center(
+            //         child: Text('Recognized Words'),
+            //       ),
+            //       Center(
+            //         child: Text(lastWords),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
-          // Card(
-          //   margin: const EdgeInsets.all(10),
-          //   child: Column(
-          //     children: <Widget>[
-          //       ListTile(
-          //         title: Text('Name'),
-          //         trailing: IconButton(
-          //           icon: Icon(_expanded
-          //               ? Icons.expand_less
-          //               : Icons.expand_more),
-          //           onPressed: () {
-          //             setState(() {
-          //               _expanded = !_expanded;
-          //             });
-          //           },
-          //         ),
-          //       ),
-          //       if (_expanded)
-          //         Container(
-          //           padding: const EdgeInsets.all(10),
-          //           child: Text(lastWords),
-          //         ),
-          //     ],
-          //   ),
-          // ),
-          PrescriptionItem(
-            lastWords: _nameWords,
-            expanded: _nameExpanded,
-            title: "Name",
-          ),
-          PrescriptionItem(
-            lastWords: _symptomsWords,
-            expanded: _symptomsExpanded,
-            title: "Symptoms",
-          ),
-          PrescriptionItem(
-            lastWords: _diagnosisWords,
-            expanded: _diagnosisExpanded,
-            title: "Diagnosis",
-          ),
-          PrescriptionItem(
-            lastWords: _prescriptionWords,
-            expanded: _prescriptionExpanded,
-            title: "Prescription",
-          ),
-          PrescriptionItem(
-            lastWords: _adviceWords,
-            expanded: _adviceExpanded,
-            title: "Advice",
-          ),
-          // Expanded(
-          //   child: Center(
-          //     child: Text('Speech recognition available'),
-          //   ),
-          // ),
-          // Container(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: <Widget>[
-          //       FlatButton(
-          //         child: Text('Start'),
-          //         onPressed: startListening,
-          //       ),
-                // FlatButton(
-                //   child: Text('Stop'),
-                //   onPressed: stopListening,
-                // ),
-                // FlatButton(
-                //   child: Text('Cancel'),
-                //   onPressed: cancelListening,
-                // ),
-                // Container(
-                //   child: speech.isListening
-                //       ? Text("Status : I'm listening...")
-                //       : Text('Status : Not listening'),
-                // ),
-          //     ],
-          //   ),
-          // ),
-          // Expanded(
-          //   child: Column(
-          //     children: <Widget>[
-          //       Center(
-          //         child: Text('Error'),
-          //       ),
-          //       Center(
-          //         child: Text(lastError),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Expanded(
-          //   child: Center(
-          //     child: speech.isListening
-          //         ? Text("I'm listening...")
-          //         : Text('Not listening'),
-          //   ),
-          // ),
-          // Expanded(
-          //   child: Center(
-          //     child: dummy.length >= 1
-          //         ? Text(dummy[dummy.length - 1])
-          //         : Text("nothing"),
-          //   ),
-          // ),
-        ],
+            // Card(
+            //   margin: const EdgeInsets.all(10),
+            //   child: Column(
+            //     children: <Widget>[
+            //       ListTile(
+            //         title: Text('Name'),
+            //         trailing: IconButton(
+            //           icon: Icon(_expanded
+            //               ? Icons.expand_less
+            //               : Icons.expand_more),
+            //           onPressed: () {
+            //             setState(() {
+            //               _expanded = !_expanded;
+            //             });
+            //           },
+            //         ),
+            //       ),
+            //       if (_expanded)
+            //         Container(
+            //           padding: const EdgeInsets.all(10),
+            //           child: Text(lastWords),
+            //         ),
+            //     ],
+            //   ),
+            // ),
+            PrescriptionItem(
+              lastWords: _nameWords,
+              expanded: _nameExpanded,
+              title: "Name",
+            ),
+            PrescriptionItem(
+              lastWords: _symptomsWords,
+              expanded: _symptomsExpanded,
+              title: "Symptoms",
+            ),
+            PrescriptionItem(
+              lastWords: _diagnosisWords,
+              expanded: _diagnosisExpanded,
+              title: "Diagnosis",
+            ),
+            PrescriptionItem(
+              lastWords: _prescriptionWords,
+              expanded: _prescriptionExpanded,
+              title: "Prescription",
+            ),
+            PrescriptionItem(
+              lastWords: _adviceWords,
+              expanded: _adviceExpanded,
+              title: "Advice",
+            ),
+            // Expanded(
+            //   child: Center(
+            //     child: Text('Speech recognition available'),
+            //   ),
+            // ),
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       FlatButton(
+            //         child: Text('Start'),
+            //         onPressed: startListening,
+            //       ),
+            // FlatButton(
+            //   child: Text('Stop'),
+            //   onPressed: stopListening,
+            // ),
+            // FlatButton(
+            //   child: Text('Cancel'),
+            //   onPressed: cancelListening,
+            // ),
+            // Container(
+            //   child: speech.isListening
+            //       ? Text("Status : I'm listening...")
+            //       : Text('Status : Not listening'),
+            // ),
+            //     ],
+            //   ),
+            // ),
+            // Expanded(
+            //   child: Column(
+            //     children: <Widget>[
+            //       Center(
+            //         child: Text('Error'),
+            //       ),
+            //       Center(
+            //         child: Text(lastError),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Expanded(
+            //   child: Center(
+            //     child: speech.isListening
+            //         ? Text("I'm listening...")
+            //         : Text('Not listening'),
+            //   ),
+            // ),
+            // Expanded(
+            //   child: Center(
+            //     child: dummy.length >= 1
+            //         ? Text(dummy[dummy.length - 1])
+            //         : Text("nothing"),
+            //   ),
+            // ),
+          ],
+        ),
       ),
       // : Center(
       //     child: Text('Speech recognition unavailable',
       //         style:
       //             TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))),
       floatingActionButton: FloatingActionButton(
-        child: speech.isListening ? Text('...') : Icon(Icons.mic),
+        backgroundColor: Theme.of(context).textTheme.title.color,
+        child: speech.isListening
+            ? Text(
+                '...',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              )
+            : Icon(
+                Icons.mic,
+                color: Colors.white,
+              ),
         onPressed: startListening,
       ),
     );

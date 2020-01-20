@@ -19,11 +19,17 @@ class _PrescriptionItemState extends State<PrescriptionItem> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(vertical:8, horizontal: 12),
       child: Column(
         children: <Widget>[
           ListTile(
-            title: Text(widget.title),
+            title: Text(
+              widget.title,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.title.color,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             trailing: IconButton(
               icon:
                   Icon(widget.expanded ? Icons.expand_less : Icons.expand_more),
