@@ -208,7 +208,15 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
                       'Submit',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: Text('SUBMITTED'),
+                          content: Text('Prescription sent to patient successfully!'),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
