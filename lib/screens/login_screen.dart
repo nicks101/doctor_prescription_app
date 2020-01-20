@@ -1,9 +1,10 @@
+import 'package:doctor_prescriptions/screens/demo_speech.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/radio_button.dart';
 import '../animation/fade_animation.dart';
-import './demo_speech.dart';
 import './patient_report_screen.dart';
+import './description_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login-screen';
@@ -186,6 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               onPressed: () {
                                 if (_selectedButton == 1) {
+                                  // Navigator.of(context).pushReplacementNamed(
+                                  //     DescriptionScreen.routeName);
                                   Navigator.of(context).pushReplacementNamed(
                                       DemoSpeech.routeName);
                                 } else if (_selectedButton == 2) {

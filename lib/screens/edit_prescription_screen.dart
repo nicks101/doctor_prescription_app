@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../models/prescription.dart';
-
 class EditPrescriptionScreen extends StatefulWidget {
   static const routeName = '/edit-prescription-screen';
 
@@ -53,7 +51,15 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text('SUBMITTED'),
+                  content: Text('Prescription sent to patient successfully!'),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -200,6 +206,9 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
                 Container(
                   padding: const EdgeInsets.all(100),
                   child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     padding: const EdgeInsets.only(top: 15, bottom: 15),
                     color: Theme.of(context).primaryColor,
                     splashColor: Theme.of(context).accentColor,
@@ -213,7 +222,8 @@ class _EditPrescriptionScreenState extends State<EditPrescriptionScreen> {
                         context: context,
                         builder: (ctx) => AlertDialog(
                           title: Text('SUBMITTED'),
-                          content: Text('Prescription sent to patient successfully!'),
+                          content: Text(
+                              'Prescription sent to patient successfully!'),
                         ),
                       );
                     },

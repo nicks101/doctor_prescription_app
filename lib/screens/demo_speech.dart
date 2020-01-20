@@ -135,142 +135,148 @@ class _DemoSpeechState extends State<DemoSpeech> {
           // )
         ],
       ),
-      body: _hasSpeech
-          ? Column(
-              children: [
-                // Expanded(
-                //   child: Column(
-                //     children: <Widget>[
-                //       Center(
-                //         child: Text('Recognized Words'),
-                //       ),
-                //       Center(
-                //         child: Text(lastWords),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+      body:
+          //  _hasSpeech ?
+          Column(
+        children: [
+          // Expanded(
+          //   child: Column(
+          //     children: <Widget>[
+          //       Center(
+          //         child: Text('Recognized Words'),
+          //       ),
+          //       Center(
+          //         child: Text(lastWords),
+          //       ),
+          //     ],
+          //   ),
+          // ),
 
-                // Card(
-                //   margin: const EdgeInsets.all(10),
-                //   child: Column(
-                //     children: <Widget>[
-                //       ListTile(
-                //         title: Text('Name'),
-                //         trailing: IconButton(
-                //           icon: Icon(_expanded
-                //               ? Icons.expand_less
-                //               : Icons.expand_more),
-                //           onPressed: () {
-                //             setState(() {
-                //               _expanded = !_expanded;
-                //             });
-                //           },
-                //         ),
-                //       ),
-                //       if (_expanded)
-                //         Container(
-                //           padding: const EdgeInsets.all(10),
-                //           child: Text(lastWords),
-                //         ),
-                //     ],
-                //   ),
+          // Card(
+          //   margin: const EdgeInsets.all(10),
+          //   child: Column(
+          //     children: <Widget>[
+          //       ListTile(
+          //         title: Text('Name'),
+          //         trailing: IconButton(
+          //           icon: Icon(_expanded
+          //               ? Icons.expand_less
+          //               : Icons.expand_more),
+          //           onPressed: () {
+          //             setState(() {
+          //               _expanded = !_expanded;
+          //             });
+          //           },
+          //         ),
+          //       ),
+          //       if (_expanded)
+          //         Container(
+          //           padding: const EdgeInsets.all(10),
+          //           child: Text(lastWords),
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          PrescriptionItem(
+            lastWords: _nameWords,
+            expanded: _nameExpanded,
+            title: "Name",
+          ),
+          PrescriptionItem(
+            lastWords: _symptomsWords,
+            expanded: _symptomsExpanded,
+            title: "Symptoms",
+          ),
+          PrescriptionItem(
+            lastWords: _diagnosisWords,
+            expanded: _diagnosisExpanded,
+            title: "Diagnosis",
+          ),
+          PrescriptionItem(
+            lastWords: _prescriptionWords,
+            expanded: _prescriptionExpanded,
+            title: "Prescription",
+          ),
+          PrescriptionItem(
+            lastWords: _adviceWords,
+            expanded: _adviceExpanded,
+            title: "Advice",
+          ),
+          // Expanded(
+          //   child: Center(
+          //     child: Text('Speech recognition available'),
+          //   ),
+          // ),
+          // Container(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: <Widget>[
+          //       FlatButton(
+          //         child: Text('Start'),
+          //         onPressed: startListening,
+          //       ),
+                // FlatButton(
+                //   child: Text('Stop'),
+                //   onPressed: stopListening,
                 // ),
-                PrescriptionItem(
-                  lastWords: _nameWords,
-                  expanded: _nameExpanded,
-                  title: "Name",
-                ),
-                PrescriptionItem(
-                  lastWords: _symptomsWords,
-                  expanded: _symptomsExpanded,
-                  title: "Symptoms",
-                ),
-                PrescriptionItem(
-                  lastWords: _diagnosisWords,
-                  expanded: _diagnosisExpanded,
-                  title: "Diagnosis",
-                ),
-                PrescriptionItem(
-                  lastWords: _prescriptionWords,
-                  expanded: _prescriptionExpanded,
-                  title: "Prescription",
-                ),
-                PrescriptionItem(
-                  lastWords: _adviceWords,
-                  expanded: _adviceExpanded,
-                  title: "Advice",
-                ),
-                // Expanded(
-                //   child: Center(
-                //     child: Text('Speech recognition available'),
-                //   ),
+                // FlatButton(
+                //   child: Text('Cancel'),
+                //   onPressed: cancelListening,
                 // ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text('Start'),
-                        onPressed: startListening,
-                      ),
-                      // FlatButton(
-                      //   child: Text('Stop'),
-                      //   onPressed: stopListening,
-                      // ),
-                      // FlatButton(
-                      //   child: Text('Cancel'),
-                      //   onPressed: cancelListening,
-                      // ),
-                    ],
-                  ),
-                ),
-
-                // Expanded(
-                //   child: Column(
-                //     children: <Widget>[
-                //       Center(
-                //         child: Text('Error'),
-                //       ),
-                //       Center(
-                //         child: Text(lastError),
-                //       ),
-                //     ],
-                //   ),
+                // Container(
+                //   child: speech.isListening
+                //       ? Text("Status : I'm listening...")
+                //       : Text('Status : Not listening'),
                 // ),
-                Expanded(
-                  child: Center(
-                    child: speech.isListening
-                        ? Text("I'm listening...")
-                        : Text('Not listening'),
-                  ),
-                ),
-                Expanded(
-                  child: Center(
-                    child: dummy.length >= 1
-                        ? Text(dummy[dummy.length - 1])
-                        : Text("nothing"),
-                  ),
-                ),
-              ],
-            )
-          : Center(
-              child: Text('Speech recognition unavailable',
-                  style:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))),
+          //     ],
+          //   ),
+          // ),
+          // Expanded(
+          //   child: Column(
+          //     children: <Widget>[
+          //       Center(
+          //         child: Text('Error'),
+          //       ),
+          //       Center(
+          //         child: Text(lastError),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Expanded(
+          //   child: Center(
+          //     child: speech.isListening
+          //         ? Text("I'm listening...")
+          //         : Text('Not listening'),
+          //   ),
+          // ),
+          // Expanded(
+          //   child: Center(
+          //     child: dummy.length >= 1
+          //         ? Text(dummy[dummy.length - 1])
+          //         : Text("nothing"),
+          //   ),
+          // ),
+        ],
+      ),
+      // : Center(
+      //     child: Text('Speech recognition unavailable',
+      //         style:
+      //             TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))),
+      floatingActionButton: FloatingActionButton(
+        child: speech.isListening ? Text('...') : Icon(Icons.mic),
+        onPressed: startListening,
+      ),
     );
   }
 
   void startListening() {
     lastWords = "";
     // lastError = "";
-    speech
-        .listen(
-          onResult: resultListener,
-          localeId: "en_in",
-        )
-        .then((_) {});
-
+    speech.listen(
+      onResult: resultListener,
+      localeId: "en_in",
+    );
     setState(() {});
   }
 
