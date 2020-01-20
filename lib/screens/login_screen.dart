@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).accentColor,
       body: Container(
         width: double.infinity,
         child: Column(
@@ -51,7 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       1,
                       Text(
                         "Login",
-                        style: TextStyle(color: Colors.orange, fontSize: 40),
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.title.color,
+                          fontSize: 40,
+                        ),
                       )),
                   SizedBox(
                     height: 10,
@@ -60,7 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       1.3,
                       Text(
                         "Welcome Back",
-                        style: TextStyle(color: Colors.orange, fontSize: 18),
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.title.color,
+                          fontSize: 18,
+                        ),
                       )),
                 ],
               ),
@@ -74,9 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       colors: [
-                        Colors.orange[900],
-                        Colors.orange[800],
-                        Colors.orange[400]
+                        // Colors.orange[900],
+                        // Colors.orange[800],
+                        // Colors.orange[400]
+                        Colors.red[900],
+                        Colors.red[300],
+                        Colors.red[100]
                       ],
                     ),
                     color: Colors.white,
@@ -176,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           margin: EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              color: Colors.orange[900]),
+                              color: Theme.of(context).textTheme.title.color),
                           child: Center(
                             child: FlatButton(
                               child: Text(

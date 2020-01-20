@@ -15,7 +15,11 @@ class _PrescriptionItemState extends State<PrescriptionItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(10),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40),
+      ),
+      margin: const EdgeInsets.all(5),
       child: Column(
         children: <Widget>[
           ListTile(

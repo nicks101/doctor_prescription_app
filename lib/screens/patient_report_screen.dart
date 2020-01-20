@@ -9,11 +9,11 @@ class PatientReportScreen extends StatefulWidget {
 
 class _PatientReportScreenState extends State<PatientReportScreen> {
 
-  double padding = 15.0;
+  double padding = 10.0;
 
   Widget _buildCard(String firstName, String lastName) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(5),
       child: Card(
         elevation: 5,
         child: ListTile(
@@ -85,6 +85,7 @@ class _PatientReportScreenState extends State<PatientReportScreen> {
       ),
       body: Container(
         margin: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.all(10),
         child: ListView.builder(
           itemCount: names.length,
           itemBuilder: (ctx, index) {
